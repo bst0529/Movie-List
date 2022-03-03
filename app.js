@@ -16,7 +16,12 @@ app.use(express.static('public'))
 
 //設定 routes
 app.get('/', (req, res) => {
-    res.render('index')
+    const movieOne = {
+        id: 1,
+        title: 'Jurassic World: Fallen Kingdom',
+        image: 'https://movie-list.alphacamp.io/posters/c9XxwwhPHdaImA2f1WEfEsbhaFB.jpg',
+    }
+    res.render('index', { movie: movieOne })
 })
 
 //啟動並監聽 Express Server
