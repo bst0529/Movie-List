@@ -11,6 +11,9 @@ app.engine('hbs', exphbs.engine({extname: '.hbs',defaultLayout: 'main'}))
 //告訴 Express 要設定的 view engine 是 handlebars
 app.set('view engine', 'hbs')
 
+//設定靜態檔案資料夾
+app.use(express.static('public'))
+
 //設定 routes
 app.get('/', (req, res) => {
     res.render('index')
