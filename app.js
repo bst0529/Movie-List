@@ -16,12 +16,21 @@ app.use(express.static('public'))
 
 //設定 routes
 app.get('/', (req, res) => {
-    const movieOne = {
-        id: 1,
-        title: 'Jurassic World: Fallen Kingdom',
-        image: 'https://movie-list.alphacamp.io/posters/c9XxwwhPHdaImA2f1WEfEsbhaFB.jpg',
-    }
-    res.render('index', { movie: movieOne })
+    //建立 movieList 儲存其內容
+    const movieList = [
+        {
+            id: 1,
+            title: 'Jurassic World: Fallen Kingdom',
+            image: 'https://movie-list.alphacamp.io/posters/c9XxwwhPHdaImA2f1WEfEsbhaFB.jpg'
+        },
+        {
+            id: 2,
+            title: 'Ant-Man and the Wasp',
+            image: 'https://movie-list.alphacamp.io/posters/rv1AWImgx386ULjcf62VYaW8zSt.jpg'
+        }
+    ]
+    //將變數 movieList 傳遞至 partial template
+    res.render('index', { movies: movieList })
 })
 
 //啟動並監聽 Express Server
