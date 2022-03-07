@@ -23,16 +23,17 @@ app.get('/', (req, res) => {
     res.render('index', { movies: movieList.results })
 })
 
-app.get('/movie/1', (req, res) => {
-    const movieOne = {
-        id: 1,
-        title: 'Jurassic World: Fallen Kingdom',
-        description:
-          'Several years after the demise of Jurassic World, a volcanic eruption threatens the remaining dinosaurs on the island of Isla Nublar. Claire Dearing, the former park manager and founder of the Dinosaur Protection Group, recruits Owen Grady to help prevent the extinction of the dinosaurs once again.',
-        release_date: '2018-06-06',
-        image: 'c9XxwwhPHdaImA2f1WEfEsbhaFB.jpg'
-    }
-    res.render('show', { movie: movieOne })
+app.get('/movie/:move_id', (req, res) => {
+    let movie = movieList.results.find(movie => movie.id.toString() === req.params.move_id)
+    res.render('show', { movie: movie })
+})
+
+app.get('/Search', (req, res) => {
+    const keyword = req.query.keyword
+    const movies = movieList.results.filter(movie => {
+        return movie.title.toLowerCase().includes(keyword.toLowerCase())
+    })
+    res.render('index',{ movies: movies,keyword: keyword  })
 })
 
 //啟動並監聽 Express Server
